@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Liang (Arthur) Li | Assistant Professor, University of Calgary</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #1a2744;
+      --blue:   #2563aa;
+      --gold:   #c8922a;
+      --light:  #f5f7fb;
+      --mid:    #e8edf5;
+      --text:   #222;
+      --muted:  #5a6478;
+      --border: #d0d8e8;
+      --radius: 8px;
+      --shadow: 0 2px 12px rgba(26,39,68,.10);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #fff;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    nav ul {
+      display: flex; flex-wrap: wrap; gap: 0;
+      list-style: none;
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+    }
+    nav ul li a {
+      display: block; padding: 13px 14px;
+      color: rgba(255,255,255,.82);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .82rem; font-weight: 500; letter-spacing: .03em;
+      transition: color .2s, background .2s;
+    }
+    nav ul li a:hover { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
+
+    /* Hero */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #243869 60%, #2a4a8a 100%);
+      color: #fff;
+      padding: 72px 24px 64px;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; gap: 52px; flex-wrap: wrap;
+    }
+    .hero-photo img {
+      width: 180px; height: 180px; object-fit: cover;
+      border-radius: 50%; border: 4px solid var(--gold);
+      box-shadow: 0 4px 24px rgba(0,0,0,.35);
+    }
+    .hero-text h1 {
+      font-size: 2.2rem; font-weight: normal; letter-spacing: .01em;
+      margin-bottom: 6px;
+    }
+    .hero-text h1 em { font-style: normal; color: var(--gold); }
+    .hero-text .subtitle {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1rem; color: rgba(255,255,255,.82);
+      margin-bottom: 18px; line-height: 1.5;
+    }
+    .hero-contact {
+      display: flex; flex-wrap: wrap; gap: 8px 20px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .85rem; color: rgba(255,255,255,.75);
+    }
+    .hero-contact a { color: rgba(255,255,255,.85); }
+    .hero-contact a:hover { color: #fff; }
+
+    /* Sections */
+    section { padding: 60px 24px; }
+    section:nth-child(even) { background: var(--light); }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    h2 {
+      font-size: 1.55rem; color: var(--navy); font-weight: normal;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 10px; margin-bottom: 30px; letter-spacing: .02em;
+    }
+    h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 6px; }
+
+    /* About */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 320px; gap: 44px; align-items: start;
+    }
+    .about-bio p { margin-bottom: 1em; }
+    .info-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+      box-shadow: var(--shadow); margin-bottom: 18px;
+    }
+    .info-card h3 {
+      font-size: .8rem; text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); font-family: 'Helvetica Neue', Arial, sans-serif;
+      margin-bottom: 12px;
+    }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 6px; }
+    .tag {
+      background: var(--mid); color: var(--navy);
+      border-radius: 20px; padding: 3px 12px;
+      font-size: .78rem; font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    .edu-list { list-style: none; }
+    .edu-list li {
+      padding: 8px 0; border-bottom: 1px solid var(--border);
+      font-size: .9rem;
+    }
+    .edu-list li:last-child { border-bottom: none; }
+    .edu-list li strong { display: block; color: var(--navy); font-size: .92rem; }
+    .edu-list li .school { color: var(--muted); font-size: .82rem; font-family: sans-serif; }
+    .edu-list li .year { color: var(--gold); font-size: .8rem; font-family: sans-serif; font-weight: 600; }
+
+    /* Publications */
+    .pub-section-label {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .75rem; text-transform: uppercase; letter-spacing: .1em;
+      color: #fff; background: var(--navy);
+      display: inline-block; padding: 3px 12px; border-radius: 3px;
+      margin-bottom: 14px; margin-top: 28px;
+    }
+    .pub-list { list-style: none; }
+    .pub-list li {
+      padding: 16px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .pub-list li:last-child { border-bottom: none; }
+    .pub-year {
+      flex-shrink: 0; width: 44px; text-align: center;
+      background: var(--navy); color: #fff;
+      border-radius: 4px; padding: 2px 0;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .78rem; font-weight: 600; line-height: 2.1;
+    }
+    .pub-year.gold { background: var(--gold); }
+    .pub-body .journal { font-style: italic; color: var(--blue); font-size: .92rem; }
+    .pub-body .status-badge {
+      display: inline-block; margin-left: 8px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .72rem; background: #e8f4e8; border: 1px solid #8bc98b;
+      border-radius: 3px; padding: 1px 7px; color: #2a6e2a;
+    }
+    .pub-body .status-badge.review { background: #fff3e0; border-color: #f0b060; color: #7a5000; }
+    .pub-body .status-badge.prep { background: var(--mid); border-color: var(--border); color: var(--muted); }
+    .pub-link {
+      display: inline-block; margin-top: 5px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .78rem; background: var(--mid);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 2px 9px; color: var(--navy);
+    }
+    .pub-link:hover { background: var(--navy); color: #fff; text-decoration: none; }
+
+    /* Awards table */
+    .awards-table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+    .awards-table th {
+      text-align: left; padding: 9px 14px;
+      background: var(--navy); color: #fff;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+    }
+    .awards-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .awards-table tr:last-child td { border-bottom: none; }
+    .awards-table tr:nth-child(even) td { background: var(--light); }
+    .award-year { font-weight: 700; color: var(--navy); font-family: sans-serif; white-space: nowrap; }
+    .award-org { font-family: sans-serif; font-size: .82rem; color: var(--muted); }
+    .award-amount { font-family: sans-serif; font-size: .8rem; color: var(--gold); font-weight: 600; }
+
+    /* Funding */
+    .funding-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px;
+    }
+    .funding-card {
+      background: #fff; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 18px; box-shadow: var(--shadow);
+    }
+    .funding-card .fund-name { font-weight: 600; color: var(--navy); font-size: .92rem; margin-bottom: 3px; }
+    .funding-card .fund-meta {
+      font-family: sans-serif; font-size: .8rem; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .funding-card .fund-year { color: var(--gold); font-weight: 600; }
+    .funding-card .fund-amount { color: var(--blue); }
+
+    /* Conferences */
+    .conf-list { list-style: none; }
+    .conf-list li {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: .92rem; display: flex; gap: 14px;
+    }
+    .conf-list li:last-child { border-bottom: none; }
+    .conf-year {
+      flex-shrink: 0; width: 40px;
+      font-family: sans-serif; font-size: .78rem; font-weight: 700;
+      color: var(--muted); padding-top: 2px;
+    }
+
+    /* Teaching */
+    .teaching-list { display: flex; flex-direction: column; gap: 0; }
+    .teaching-item {
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start;
+    }
+    .teaching-item:last-child { border-bottom: none; }
+    .teaching-item .course { font-weight: 600; color: var(--navy); }
+    .teaching-item .inst { font-size: .88rem; color: var(--muted); font-style: italic; }
+    .teaching-item .role-label {
+      font-family: sans-serif; font-size: .75rem;
+      background: var(--mid); border-radius: 3px; padding: 2px 8px;
+      color: var(--navy); white-space: nowrap; align-self: start; margin-top: 3px;
+    }
+
+    /* Service */
+    .service-list { list-style: none; }
+    .service-list li {
+      padding: 9px 0; border-bottom: 1px solid var(--border);
+      font-size: .92rem; display: flex; gap: 14px;
+    }
+    .service-list li:last-child { border-bottom: none; }
+    .service-date {
+      flex-shrink: 0; min-width: 90px;
+      font-family: sans-serif; font-size: .78rem; color: var(--gold); font-weight: 600;
+    }
+
+    /* Experience */
+    .exp-list { display: flex; flex-direction: column; gap: 24px; }
+    .exp-item { border-left: 3px solid var(--gold); padding-left: 20px; }
+    .exp-item .exp-title { font-weight: 700; color: var(--navy); font-size: 1rem; }
+    .exp-item .exp-org { font-style: italic; color: var(--blue); font-size: .95rem; }
+    .exp-item .exp-meta { font-family: sans-serif; font-size: .82rem; color: var(--muted); margin-bottom: 6px; }
+    .exp-item ul { margin-top: 6px; padding-left: 18px; font-size: .92rem; }
+    .exp-item ul li { margin-bottom: 3px; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .contact-item { margin-bottom: 18px; }
+    .contact-item label {
+      display: block; font-family: sans-serif;
+      font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    /* Pills row */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pill {
+      font-family: sans-serif; font-size: .8rem;
+      border: 1px solid var(--border); border-radius: 20px;
+      padding: 3px 12px; color: var(--navy);
+    }
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.6);
+      text-align: center; padding: 28px 24px;
+      font-family: sans-serif; font-size: .8rem;
+    }
+    footer a { color: rgba(255,255,255,.75); }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .hero-inner { flex-direction: column; gap: 24px; }
+      .hero-photo img { width: 130px; height: 130px; }
+      .hero-text h1 { font-size: 1.65rem; }
+      .teaching-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="news.html">News</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#funding">Grants</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#conferences">Conferences</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#service">Service</a></li>
+    <li><a href="#experience">Industry</a></li>
+    <li><a href="#beyond">Beyond Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="https://www.torontomu.ca/content/dam/tedrogersschool/business-management/faculty/gms/liang-arthur-li.jpg"
+           alt="Dr. Liang (Arthur) Li" />
+    </div>
+    <div class="hero-text">
+      <h1>Dr. Liang <em>(Arthur)</em> Li</h1>
+      <div class="subtitle">
+        Assistant Professor, Strategy and Global Management<br />
+        Haskayne School of Business · University of Calgary
+      </div>
+      <div class="hero-contact">
+        <span>📧 <a href="mailto:liangarthur.li@ucalgary.ca">liangarthur.li@ucalgary.ca</a></span>
+        <span>🔗 <a href="https://www.linkedin.com/in/arthur312/" target="_blank" rel="noopener">LinkedIn</a></span>
+        <span>🆔 <a href="https://orcid.org/0000-0002-8154-1591" target="_blank" rel="noopener">ORCID</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-inner">
+    <h2>About</h2>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>
+          Hi, I'm Arthur — an Assistant Professor in Strategy and Global Management at the
+          Haskayne School of Business, University of Calgary. My research centers on the
+          managerial micro-foundations of how multinational enterprises (MNEs) manage,
+          coordinate, and evolve their foreign subsidiaries. I'm especially interested in
+          the decision-making processes of subsidiary general managers and the behavioral
+          mechanisms that shape succession, control, and organizational change.
+        </p>
+        <p>
+          Before joining Haskayne, I was at the Ted Rogers School of Management, Toronto
+          Metropolitan University, and before that at the Henley Business School, University
+          of Reading. I earned my PhD in International Business from the Ivey Business School,
+          Western University (2021).
+        </p>
+        <p>
+          One thing that shapes my work is the time I spent in industry before academia. I
+          co-founded an international trading company, served as Managing Director of the
+          China subsidiary of a Swedish MNE, and worked as an Overseas Operation Manager at
+          Haier Group. Those years gave me a firsthand perspective on the very phenomena I
+          now study — and I find that it makes a real difference in the classroom too.
+        </p>
+        <p>
+          Outside of research and teaching, I serve as an Executive Board Member of the
+          Academy of International Business (AIB), Canada Chapter, and as a Mentor at the
+          AIB-CIBER Doctoral Academy. I genuinely enjoy supporting the next generation of IB
+          scholars, so please feel free to reach out if you're a doctoral student working in
+          this space.
+        </p>
+
+        <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:12px;">
+          <div class="info-card" style="flex:1; min-width:200px; margin-bottom:0;">
+            <h3>Research Interests</h3>
+            <div class="tag-list">
+              <span class="tag">Foreign Subsidiary Management</span>
+              <span class="tag">Multinational Enterprises</span>
+              <span class="tag">Microfoundations of IB</span>
+              <span class="tag">Decision-Making in MNEs</span>
+              <span class="tag">CEO &amp; Executive Leadership</span>
+            </div>
+          </div>
+          <div class="info-card" style="flex:1; min-width:200px; margin-bottom:0;">
+            <h3>Teaching Interests</h3>
+            <div class="tag-list">
+              <span class="tag">International Business Strategy</span>
+              <span class="tag">International Management</span>
+              <span class="tag">Global Management</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="info-card">
+          <h3>Education</h3>
+          <ul class="edu-list">
+            <li>
+              <strong>PhD, General Management (International Business)</strong>
+              <span class="school">Ivey Business School, Western University, Canada</span>
+              <span class="year">2021</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Academic Affiliations</h3>
+          <ul class="edu-list">
+            <li><strong>Academy of International Business</strong></li>
+            <li><strong>Academy of Management</strong></li>
+            <li><strong>Strategic Management Society</strong></li>
+            <li><strong>Association of Japanese Business Studies</strong></li>
+            <li>
+              <strong>Peoples, Cultures, and Careers Research Cluster</strong>
+              <span class="school">James Cook University, Singapore</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-card" style="margin-bottom:0;">
+          <h3>Languages</h3>
+          <div class="pills">
+            <span class="pill">Chinese (Native)</span>
+            <span class="pill">English (Fluent)</span>
+            <span class="pill">German</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Media -->
+<section id="media">
+  <div class="section-inner">
+    <h2>Media</h2>
+    <div style="max-width:720px;">
+      <video
+        src="https://lh3.googleusercontent.com/notebooklm/AKXwDQGp4OgPSatquKVUUF-1ox88r_rdxWQMitfAd6Us3BbIStLUBE4HJgpyLoJ8_0xqiNoGGC_gIIBwnFSJ3lwWbfVa6B37e7WTqI5rQSBVortLLD7-plvhSWF612BR3c39Yy8MOriHlchMW7jDCI4rV-F3GZLVfA=m22?authuser=0"
+        controls
+        style="width:100%; border-radius:8px; background:#000;"
+        preload="metadata"
+      >
+        <p>Your browser does not support this media format.
+          <a href="https://lh3.googleusercontent.com/notebooklm/AKXwDQGp4OgPSatquKVUUF-1ox88r_rdxWQMitfAd6Us3BbIStLUBE4HJgpyLoJ8_0xqiNoGGC_gIIBwnFSJ3lwWbfVa6B37e7WTqI5rQSBVortLLD7-plvhSWF612BR3c39Yy8MOriHlchMW7jDCI4rV-F3GZLVfA=m22?authuser=0">Download the file</a>.
+        </p>
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Research -->
+<section id="research">
+  <div class="section-inner">
+    <h2>Research</h2>
+    <p style="max-width:740px; margin-bottom:28px;">
+      Dr. Li's research program examines how individual managers shape organizational outcomes
+      in multinational enterprises. He draws on behavioral theory, bounded rationality, and
+      micro-foundational perspectives to study subsidiary control, GM succession, and MNE strategy.
+      A second program addresses senior leadership—particularly CEO aging—and its consequences
+      for internationalization.
+    </p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap:18px;">
+      <div class="info-card" style="margin-bottom:0;">
+        <h3 style="font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-family:sans-serif; margin-bottom:10px;">Stream 1</h3>
+        <h3 style="font-size:1rem; margin-bottom:8px;">GM Succession &amp; Subsidiary Control</h3>
+        <p style="font-size:.9rem; color:var(--muted);">
+          How bounded rationality and bounded reliability shape general manager succession dynamics,
+          decision heuristics, and nationality of successor selection in MNE foreign subsidiaries.
+          Core work published in <em>JIBS</em> and <em>IBR</em>.
+        </p>
+      </div>
+      <div class="info-card" style="margin-bottom:0;">
+        <h3 style="font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-family:sans-serif; margin-bottom:10px;">Stream 2</h3>
+        <h3 style="font-size:1rem; margin-bottom:8px;">CEO Aging &amp; MNE Strategy</h3>
+        <p style="font-size:.9rem; color:var(--muted);">
+          Cognitive and experiential consequences of CEO aging on MNE internationalization
+          portfolios, including selectivity toward culturally proximate and institutionally
+          weak host countries. Published in <em>Journal of World Business</em>.
+        </p>
+      </div>
+      <div class="info-card" style="margin-bottom:0;">
+        <h3 style="font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-family:sans-serif; margin-bottom:10px;">Stream 3</h3>
+        <h3 style="font-size:1rem; margin-bottom:8px;">Microfoundations in IB</h3>
+        <p style="font-size:.9rem; color:var(--muted);">
+          Theoretical development using role theory, symbolic interactionism, and behavioral
+          perspectives to advance microfoundational thinking in IB. Ongoing work at
+          <em>Global Strategy Journal</em> and <em>Journal of World Business</em>.
+        </p>
+      </div>
+      <div class="info-card" style="margin-bottom:0;">
+        <h3 style="font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-family:sans-serif; margin-bottom:10px;">Stream 4</h3>
+        <h3 style="font-size:1rem; margin-bottom:8px;">Immigrant &amp; Indigenous Entrepreneurs</h3>
+        <p style="font-size:.9rem; color:var(--muted);">
+          How immigrant- and Indigenous-owned Canadian firms navigate global disruptions, tariff
+          shocks, and exporting decisions. Mixed-methods work using Statistics Canada Research
+          Data Centre data.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Publications -->
+<section id="publications">
+  <div class="section-inner">
+    <h2>Publications &amp; Manuscripts</h2>
+
+    <div class="pub-section-label">Refereed Journal Articles</div>
+    <ul class="pub-list">
+
+      <li>
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          <strong>Li, L.</strong>, Ng, E., Goerzen, A., &amp; Chrysostome, E.
+          CEO aging and MNE internationalization portfolio.
+          <span class="journal">Journal of World Business, 61</span>(4), 101730.
+          <br /><a class="pub-link" href="https://doi.org/10.1016/j.jwb.2026.101730" target="_blank" rel="noopener">→ DOI: 10.1016/j.jwb.2026.101730</a>
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-year">2024</div>
+        <div class="pub-body">
+          <strong>Li, L.</strong>, Beamish, P.W., &amp; Schotter, A.
+          General manager succession dynamics in MNE foreign subsidiaries.
+          <span class="journal">Journal of International Business Studies.</span>
+          <br /><a class="pub-link" href="https://doi.org/10.1057/s41267-024-00717-3" target="_blank" rel="noopener">→ DOI: 10.1057/s41267-024-00717-3</a>
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-year">2024</div>
+        <div class="pub-body">
+          <strong>Li, L.</strong>, Schotter, A., &amp; Beamish, P.W.
+          The origin and nationality of general manager successors in local-market-seeking MNE subsidiaries.
+          <span class="journal">International Business Review, 33</span>(3), 102272.
+          <br /><a class="pub-link" href="https://doi.org/10.1016/j.ibusrev.2024.102272" target="_blank" rel="noopener">→ DOI: 10.1016/j.ibusrev.2024.102272</a>
+        </div>
+      </li>
+
+      <li>
+        <div class="pub-year">2022</div>
+        <div class="pub-body">
+          <strong>Li, L.</strong>
+          General manager successions in foreign subsidiaries of MNEs.
+          <span class="journal">AIB Insights, 22</span>(4).
+          <br /><a class="pub-link" href="https://doi.org/10.46697/001c.38486" target="_blank" rel="noopener">→ DOI: 10.46697/001c.38486</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pub-section-label">Books</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-year">2022</div>
+        <div class="pub-body">
+          Lee, J.M., Ibarra-Olivo, E., Lavoratori, K., &amp; <strong>Li, L.</strong> (Eds.)
+          <em>Contemporary issues in international business: Inequality, geography, and global value chains.</em>
+          Palgrave Macmillan Cham.
+          <br /><a class="pub-link" href="https://doi.org/10.1007/978-3-031-24090-4" target="_blank" rel="noopener">→ DOI: 10.1007/978-3-031-24090-4</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pub-section-label">Conference Proceedings (AOM Best Papers)</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-year">2023</div>
+        <div class="pub-body">
+          <strong>Li, L.</strong>, Hasse, V., &amp; Rickley, M.
+          A behavioral perspective on general manager succession in underperforming foreign subsidiaries.
+          <span class="journal">Academy of Management Best Paper Proceedings.</span>
+          <br /><a class="pub-link" href="https://doi.org/10.5465/AMPROC.2023.229bp" target="_blank" rel="noopener">→ DOI: 10.5465/AMPROC.2023.229bp</a>
+        </div>
+      </li>
+      <li>
+        <div class="pub-year">2021</div>
+        <div class="pub-body">
+          <strong>Li, L.</strong>, Beamish, P.W., &amp; Schotter, A.
+          GM successors in local-market-seeking subsidiaries of MNEs: A multiple-case analysis.
+          <span class="journal">Academy of Management Best Paper Proceedings.</span>
+          <br /><a class="pub-link" href="https://doi.org/10.5465/AMBPP.2021.11" target="_blank" rel="noopener">→ DOI: 10.5465/AMBPP.2021.11</a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pub-section-label">Teaching Cases</div>
+    <ul class="pub-list">
+      <li>
+        <div class="pub-year">2026</div>
+        <div class="pub-body">
+          Sui, S., <strong>Li, L.</strong>, &amp; Beamish, P.W.
+          Northern Horizons Forestry: Tariff Shock.
+          <span class="journal">Ivey Publishing.</span>
+          <span style="font-size:.87rem; color:var(--muted); display:block; margin-top:3px;">Strategic decisions of an Indigenous-owned Canadian forestry company navigating U.S. tariffs, global trade dynamics, sustainability commitments, and community employment.</span>
+        </div>
+      </li>
+    </ul>
+
+
+  </div>
+</section>
+
+<!-- Funding -->
+<section id="funding">
+  <div class="section-inner">
+    <h2>Research Funding</h2>
+    <div class="funding-grid">
+      <div class="funding-card" style="border-color:var(--gold); box-shadow:0 2px 12px rgba(200,146,42,.18);">
+        <div class="fund-name">SSHRC Insights Development Grant</div>
+        <div class="fund-meta"><span class="fund-year">2026</span><span class="fund-amount">C$69,925</span><span>Principal Investigator</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Outstanding Research Recognition Fund</div>
+        <div class="fund-meta"><span class="fund-year">2026</span><span class="fund-amount">C$2,000</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Matching Fund</div>
+        <div class="fund-meta"><span class="fund-year">2025</span><span class="fund-amount">C$1,000</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TMU URO Grant</div>
+        <div class="fund-meta"><span class="fund-year">2025</span><span class="fund-amount">C$11,725.70</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Research Development Grant</div>
+        <div class="fund-meta"><span class="fund-year">2025</span><span class="fund-amount">C$7,000</span><span>PI</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Research Development Grant</div>
+        <div class="fund-meta"><span class="fund-year">2025</span><span class="fund-amount">C$7,000</span><span>Co-PI</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Outstanding Research Recognition Fund</div>
+        <div class="fund-meta"><span class="fund-year">2024</span><span class="fund-amount">C$2,000</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Matching Fund</div>
+        <div class="fund-meta"><span class="fund-year">2023</span><span class="fund-amount">C$1,000</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Research Development Grant</div>
+        <div class="fund-meta"><span class="fund-year">2023</span><span class="fund-amount">C$7,000</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">Yonsei University Research Grant</div>
+        <div class="fund-meta"><span class="fund-year">2022–2023</span><span class="fund-amount">C$8,240</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">TRSM Startup Fund</div>
+        <div class="fund-meta"><span class="fund-year">2022</span></div>
+      </div>
+      <div class="funding-card">
+        <div class="fund-name">Plan For Excellence PhD Fellowship</div>
+        <div class="fund-meta"><span class="fund-year">2016 – 2020</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards -->
+<section id="awards">
+  <div class="section-inner">
+    <h2>Honours &amp; Awards</h2>
+    <table class="awards-table">
+      <thead>
+        <tr><th>Year</th><th>Award</th><th>Organization</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="award-year">2026</td>
+          <td>TRSM Outstanding Research Recognition Fund <span class="award-amount">C$2,000</span></td>
+          <td class="award-org">Ted Rogers School of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2025</td>
+          <td>Best Reviewer Award</td>
+          <td class="award-org">European International Business Academy</td>
+        </tr>
+        <tr>
+          <td class="award-year">2025</td>
+          <td>Best Reviewer Award (IM Division)</td>
+          <td class="award-org">Academy of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2024–25</td>
+          <td>TRSM Research Recognition Award</td>
+          <td class="award-org">Ted Rogers School of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2025</td>
+          <td>"That's Interesting!" Paper Award — Finalist</td>
+          <td class="award-org">Academy of International Business</td>
+        </tr>
+        <tr>
+          <td class="award-year">2024</td>
+          <td>TRSM Outstanding Research Recognition Fund <span class="award-amount">C$2,000</span></td>
+          <td class="award-org">Ted Rogers School of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2024</td>
+          <td>IB CEMS Elective Course Teaching Excellence Award</td>
+          <td class="award-org">CEMS / University of Reading</td>
+        </tr>
+        <tr>
+          <td class="award-year">2023</td>
+          <td>International Management Division Best Paper Award (OB/HRM/OT) <span style="font-size:.85rem; color:var(--muted);">with Hasse, V. &amp; Rickley, M.</span></td>
+          <td class="award-org">Academy of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2022</td>
+          <td>HEA Associate Fellowship (AFHEA)</td>
+          <td class="award-org">Higher Education Academy</td>
+        </tr>
+        <tr>
+          <td class="award-year">2022</td>
+          <td>D'Amore-McKim Best Dissertation Award</td>
+          <td class="award-org">Academy of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2022</td>
+          <td>Buckley and Casson Best Dissertation Award — Finalist</td>
+          <td class="award-org">Academy of International Business</td>
+        </tr>
+        <tr>
+          <td class="award-year">2022</td>
+          <td>Best Reviewer Award</td>
+          <td class="award-org">Academy of International Business</td>
+        </tr>
+        <tr>
+          <td class="award-year">2021</td>
+          <td>Best Paper Award — Finalist (IM Division)</td>
+          <td class="award-org">Academy of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2021</td>
+          <td>Best Reviewer Award (IM Division)</td>
+          <td class="award-org">Academy of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2020</td>
+          <td>Best Reviewer Award (IM Division)</td>
+          <td class="award-org">Academy of Management</td>
+        </tr>
+        <tr>
+          <td class="award-year">2013</td>
+          <td>Nasdaq QMX Scholarship (Grade 1)</td>
+          <td class="award-org">Gabelli School of Business / Nasdaq</td>
+        </tr>
+        <tr>
+          <td class="award-year">2013</td>
+          <td>BiMBA Academic Excellence Award</td>
+          <td class="award-org">BiMBA</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Conferences -->
+<section id="conferences">
+  <div class="section-inner">
+    <h2>Conference Presentations</h2>
+    <ul class="conf-list">
+      <li>
+        <span class="conf-year">2025</span>
+        <span><strong>Li, L.</strong>, Yildiz, E., Georgakakis, D., Greve, P., &amp; Beamish, P.W. — European International Business Academy Conference, Athens, Greece (December)</span>
+      </li>
+      <li>
+        <span class="conf-year">2025</span>
+        <span><strong>Li, L.</strong>, Ng, E., Goerzen, A., &amp; Chrysostome, E. — Academy of International Business Conference, Louisville, USA (July)</span>
+      </li>
+      <li>
+        <span class="conf-year">2024</span>
+        <span><strong>Li, L.</strong>, Rickley, M., &amp; Hasse, V. — Academy of Management Conference, Chicago, USA (August)</span>
+      </li>
+      <li>
+        <span class="conf-year">2024</span>
+        <span>Lee, J.M., <strong>Li, L.</strong>, Schotter, A., &amp; Makino, S. — Academy of Management Conference, Chicago, USA (August)</span>
+      </li>
+      <li>
+        <span class="conf-year">2024</span>
+        <span><strong>Li, L.</strong>, Lee, J.M., &amp; Meyer, K. — Academy of International Business Conference, Seoul, South Korea (July)</span>
+      </li>
+      <li>
+        <span class="conf-year">2023</span>
+        <span><strong>Li, L.</strong>, Hasse, V., &amp; Rickley, M. — Academy of Management Conference, Boston, USA (August) <em style="color:var(--gold);">★ Best Paper</em></span>
+      </li>
+      <li>
+        <span class="conf-year">2023</span>
+        <span><strong>Li, L.</strong> &amp; Lee, J.M. — Academy of International Business Conference, Warsaw, Poland (July)</span>
+      </li>
+      <li>
+        <span class="conf-year">2022</span>
+        <span><strong>Li, L.</strong> &amp; Rickley, M. — Academy of Management Conference, Seattle, USA (August)</span>
+      </li>
+      <li>
+        <span class="conf-year">2022</span>
+        <span><strong>Li, L.</strong> &amp; Ng, E. — Academy of International Business Conference, Miami, USA (July)</span>
+      </li>
+      <li>
+        <span class="conf-year">2022</span>
+        <span><strong>Li, L.</strong>, Hasse, V., &amp; Rickley, M. — Academy of International Business Conference, UK Chapter (April)</span>
+      </li>
+      <li>
+        <span class="conf-year">2021</span>
+        <span><strong>Li, L.</strong> &amp; Rickley, M. — Academy of International Business Conference, Canada Chapter (November)</span>
+      </li>
+      <li>
+        <span class="conf-year">2021</span>
+        <span><strong>Li, L.</strong>, Beamish, P.W., &amp; Schotter, A. — Academy of Management Conference (August) <em style="color:var(--gold);">★ Best Paper</em></span>
+      </li>
+      <li>
+        <span class="conf-year">2021</span>
+        <span><strong>Li, L.</strong>, Beamish, P.W., &amp; Schotter, A. — 34th Annual Meeting, Association of Japanese Business Studies (June)</span>
+      </li>
+      <li>
+        <span class="conf-year">2021</span>
+        <span><strong>Li, L.</strong>, Beamish, P.W., &amp; Schotter, A. — Academy of International Business Conference (June)</span>
+      </li>
+      <li>
+        <span class="conf-year">2020</span>
+        <span><strong>Li, L.</strong> &amp; Schotter, A. — Academy of Management Conference, Vancouver, Canada (August)</span>
+      </li>
+      <li>
+        <span class="conf-year">2020</span>
+        <span><strong>Li, L.</strong> &amp; Schotter, A. — Academy of International Business Conference, Miami, USA (July)</span>
+      </li>
+      <li>
+        <span class="conf-year">2019</span>
+        <span><strong>Li, L.</strong>, Schotter, A., &amp; Beamish, P.W. — Academy of International Business Conference, Copenhagen, Denmark (June)</span>
+      </li>
+      <li>
+        <span class="conf-year">2018</span>
+        <span><strong>Li, L.</strong> &amp; Schotter, A. — iBegin Conference, Philadelphia, USA (October)</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Teaching -->
+<section id="teaching">
+  <div class="section-inner">
+    <h2>Teaching</h2>
+    <p style="margin-bottom:24px; font-size:.95rem; color:var(--muted);">
+      Recipient of the IB CEMS Elective Course Teaching Excellence Award (2024) and HEA Associate Fellowship (2022).
+    </p>
+    <div class="teaching-list">
+      <div class="teaching-item">
+        <div>
+          <div class="course">"Introduction to Global Management"</div>
+          <div class="inst">Ted Rogers School of Management, Toronto Metropolitan University</div>
+        </div>
+        <div class="role-label">Instructor — Fall 2022 – 2026</div>
+      </div>
+      <div class="teaching-item">
+        <div>
+          <div class="course">"International Business Strategy"</div>
+          <div class="inst">Henley Business School, University of Reading</div>
+        </div>
+        <div class="role-label">Instructor — Spring 2022</div>
+      </div>
+      <div class="teaching-item">
+        <div>
+          <div class="course">"Competing in and with China"</div>
+          <div class="inst">Ivey Master of Science in Management, Western University</div>
+        </div>
+        <div class="role-label">Instructor — Fall 2020, Spring &amp; Fall 2021</div>
+      </div>
+      <div class="teaching-item">
+        <div>
+          <div class="course">"International Joint Ventures" — Data Analysis Instruction</div>
+          <div class="inst">Ivey MSc Management (for Prof. Paul Beamish), Western University</div>
+        </div>
+        <div class="role-label">Instructor — Spring 2021</div>
+      </div>
+      <div class="teaching-item">
+        <div>
+          <div class="course">"Competing in and with China"</div>
+          <div class="inst">Ivey Master of Science in Management, Western University</div>
+        </div>
+        <div class="role-label">Teaching Assistant (for Prof. Klaus Meyer) — Spring 2019</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Service -->
+<section id="service">
+  <div class="section-inner">
+    <h2>Academic Service</h2>
+    <ul class="service-list">
+      <li><span class="service-date">2025</span><span>Track Co-Chair, European International Business Academy Conference (EIBA), Athens</span></li>
+      <li><span class="service-date">Apr 2025</span><span>Research Talk, Shandong University (Online)</span></li>
+      <li><span class="service-date">Dec 2024</span><span>Research Talk, Nanjing University (Online)</span></li>
+      <li><span class="service-date">Since 2024</span><span>Mentor, AIB-CIBER Doctoral Academy</span></li>
+      <li><span class="service-date">Since 2023</span><span>Executive Board Member, AIB Canada Chapter</span></li>
+      <li><span class="service-date">Aug 2023</span><span>Invited Panelist, Academy of Management Doctoral Consortium</span></li>
+      <li><span class="service-date">Aug 2023</span><span>Invited Panelist, AOM PDW — Writing an Award-Winning Dissertation</span></li>
+      <li><span class="service-date">Jul 2023</span><span>Invited Panelist, Academy of International Business Doctoral Consortium</span></li>
+      <li><span class="service-date">Since Jul 2023</span><span>Member, PhD Candidacy Examination Committee, TRSM</span></li>
+      <li><span class="service-date">Jul 2023</span><span>Reviewer, WSRA Program Competition</span></li>
+      <li><span class="service-date">Mar 2023</span><span>Member, MScM Thesis Defense Examination Committee, TRSM</span></li>
+      <li><span class="service-date">Since 2023</span><span>Ad hoc Reviewer, <em>Journal of Business Research</em></span></li>
+      <li><span class="service-date">Since 2023</span><span>Ad hoc Reviewer, <em>Multinational Business Review</em></span></li>
+      <li><span class="service-date">Apr 2022</span><span>Session Chair, Upper Echelons — AIB UK Chapter Conference</span></li>
+      <li><span class="service-date">Aug 2021</span><span>Session Chair, Subsidiary Management Issues, AOM IM Division</span></li>
+      <li><span class="service-date">Since 2021</span><span>Ad hoc Reviewer, <em>Journal of International Management</em></span></li>
+      <li><span class="service-date">Since 2020</span><span>Ad hoc Reviewer, <em>Journal of World Business</em></span></li>
+      <li><span class="service-date">Since 2019</span><span>Ad hoc Reviewer, <em>Journal of International Business Studies</em></span></li>
+      <li><span class="service-date">2018–2021</span><span>PhD Student Mentor, Ivey Business School</span></li>
+      <li><span class="service-date">2017–2018</span><span>Vice President Finance, Ivey PhD Association</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Industry Experience -->
+<section id="experience">
+  <div class="section-inner">
+    <h2>Industry &amp; Management Experience</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-title">Managing Director, China Subsidiary</div>
+        <div class="exp-org">Elof Hansson International AB · Beijing, China</div>
+        <div class="exp-meta">2012 – 2016</div>
+        <ul>
+          <li>Led the OECD sovereignty loan business and project consolidations</li>
+          <li>Developed business networks with key stakeholders across China</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-title">General Manager &amp; Co-Founder</div>
+        <div class="exp-org">Qingdao Honest International Trading Co., Ltd. · Qingdao, China</div>
+        <div class="exp-meta">2007 – 2011</div>
+        <ul>
+          <li>Produced and exported biomass-fired boilers and renewable energy pyrolysis systems</li>
+          <li>Managed the company's day-to-day operations</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-title">Overseas Operation Manager</div>
+        <div class="exp-org">Haier Group, Overseas Administration Division · Qingdao, China</div>
+        <div class="exp-meta">2005 – 2007</div>
+        <ul>
+          <li>Analyzed the performance of Haier's foreign subsidiaries</li>
+          <li>Monitored and facilitated cross-cultural cooperation and communication</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beyond Research -->
+<section id="beyond">
+  <div class="section-inner">
+    <h2>Beyond Research</h2>
+    <p style="margin-bottom:24px; max-width:640px;">
+      Meet Tucker — my 3.5-year-old golden retriever and chief research assistant.
+      He attends every writing session, wears the glasses when needed, and has yet to
+      submit a single co-author revision. Ideal collaborator.
+    </p>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:14px;">
+      <div style="text-align:center;">
+        <img src="tucker1.jpg" alt="Tucker" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+      <div style="text-align:center;">
+        <img src="tucker2.jpg" alt="Tucker" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+      <div style="text-align:center;">
+        <img src="tucker3.jpg" alt="Tucker" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+      <div style="text-align:center;">
+        <img src="tucker4.jpg" alt="Tucker" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+      <div style="text-align:center;">
+        <img src="tucker5.jpg" alt="Tucker" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+      <div style="text-align:center;">
+        <img src="tucker6.jpg" alt="Tucker wearing glasses" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+      <div style="text-align:center;">
+        <img src="tucker7.jpg" alt="Tucker" style="width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:10px; border:3px solid var(--gold); box-shadow:var(--shadow);" />
+      </div>
+    </div>
+    <p style="font-family:sans-serif; font-size:.82rem; color:var(--muted); margin-top:12px;">
+      Tucker — Golden Retriever, age 3.5 🐾
+    </p>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="section-inner">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <label>Email</label>
+          <a href="mailto:liangarthur.li@ucalgary.ca">liangarthur.li@ucalgary.ca</a>
+        </div>
+        <div class="contact-item">
+          <label>Mailing Address</label>
+          <span>
+            Strategy and Global Management<br />
+            Haskayne School of Business, University of Calgary<br />
+            2500 University Dr. NW<br />
+            Calgary, AB T2N 1N4, Canada
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="contact-item">
+          <label>Department</label>
+          <a href="https://haskayne.ucalgary.ca/" target="_blank" rel="noopener">
+            Strategy and Global Management<br />Haskayne School of Business<br />University of Calgary
+          </a>
+        </div>
+        <div class="contact-item">
+          <label>Online Profiles</label>
+          <span>
+            <a href="https://www.linkedin.com/in/arthur312/" target="_blank" rel="noopener">LinkedIn</a> ·
+            <a href="https://orcid.org/0000-0002-8154-1591" target="_blank" rel="noopener">ORCID</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <label>Professional Service</label>
+          <span>Executive Board Member, Academy of International Business (AIB), Canada Chapter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>Dr. Liang (Arthur) Li · Assistant Professor, Strategy and Global Management · Haskayne School of Business, University of Calgary</p>
+  <p style="margin-top:6px;">© 2026</p>
+</footer>
+
+</body>
+</html>

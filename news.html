@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News | Dr. Liang (Arthur) Li</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #1a2744;
+      --blue:   #2563aa;
+      --gold:   #c8922a;
+      --light:  #f5f7fb;
+      --mid:    #e8edf5;
+      --text:   #222;
+      --muted:  #5a6478;
+      --border: #d0d8e8;
+      --radius: 8px;
+      --shadow: 0 2px 12px rgba(26,39,68,.10);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: #fff;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Navigation */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    nav ul {
+      display: flex; flex-wrap: wrap;
+      list-style: none;
+      max-width: 1100px; margin: 0 auto; padding: 0 16px;
+    }
+    nav ul li a {
+      display: block; padding: 13px 14px;
+      color: rgba(255,255,255,.82);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: .82rem; font-weight: 500; letter-spacing: .03em;
+      transition: color .2s, background .2s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
+
+    /* Page header */
+    .page-header {
+      background: linear-gradient(135deg, var(--navy) 0%, #243869 60%, #2a4a8a 100%);
+      color: #fff;
+      padding: 48px 24px 44px;
+    }
+    .page-header-inner { max-width: 1100px; margin: 0 auto; }
+    .page-header h1 {
+      font-size: 2rem; font-weight: normal;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 12px; display: inline-block;
+    }
+    .page-header p {
+      margin-top: 12px; color: rgba(255,255,255,.75);
+      font-family: 'Helvetica Neue', Arial, sans-serif; font-size: .95rem;
+    }
+
+    /* Main */
+    main { max-width: 1100px; margin: 0 auto; padding: 52px 24px 80px; }
+
+    /* Add-news hint */
+    .add-hint {
+      background: var(--light); border: 1px dashed var(--border);
+      border-radius: var(--radius); padding: 14px 20px;
+      font-family: 'Helvetica Neue', Arial, sans-serif; font-size: .85rem;
+      color: var(--muted); margin-bottom: 40px;
+    }
+    .add-hint strong { color: var(--navy); }
+
+    /* News grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    /* News card */
+    .news-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: box-shadow .2s, transform .2s;
+      background: #fff;
+    }
+    .news-card:hover {
+      box-shadow: 0 6px 24px rgba(26,39,68,.15);
+      transform: translateY(-2px);
+    }
+    .news-card-img {
+      width: 100%; height: 200px; object-fit: cover;
+      display: block; background: var(--mid);
+    }
+    .news-card-img-placeholder {
+      width: 100%; height: 200px;
+      background: linear-gradient(135deg, var(--navy), #2a4a8a);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .news-card-img-placeholder span {
+      font-family: sans-serif; font-size: 2.5rem; opacity: .4;
+    }
+    .news-card-body { padding: 20px 22px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .news-card-meta {
+      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif; font-size: .78rem;
+    }
+    .news-date { color: var(--gold); font-weight: 700; }
+    .news-source {
+      background: var(--mid); color: var(--navy);
+      border-radius: 3px; padding: 1px 8px; font-size: .75rem;
+    }
+    .news-card h2 {
+      font-size: 1rem; color: var(--navy); font-weight: 600;
+      line-height: 1.45; border: none; padding: 0; margin: 0; letter-spacing: 0;
+    }
+    .news-card p {
+      font-size: .9rem; color: var(--muted); line-height: 1.55; flex: 1;
+    }
+    .news-card-link {
+      display: inline-block; margin-top: 10px;
+      font-family: 'Helvetica Neue', Arial, sans-serif; font-size: .8rem;
+      background: var(--navy); color: #fff;
+      border-radius: 4px; padding: 6px 14px;
+      transition: background .2s;
+    }
+    .news-card-link:hover { background: var(--blue); text-decoration: none; }
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.6);
+      text-align: center; padding: 28px 24px;
+      font-family: sans-serif; font-size: .8rem;
+    }
+    footer a { color: rgba(255,255,255,.75); }
+
+    @media (max-width: 600px) {
+      .news-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#research">Research</a></li>
+    <li><a href="index.html#publications">Publications</a></li>
+    <li><a href="index.html#awards">Awards</a></li>
+    <li><a href="news.html" class="active">News</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>News &amp; Media Coverage</h1>
+    <p>Press coverage, award announcements, and highlights from the broader academic community.</p>
+  </div>
+</div>
+
+<main>
+
+  <div class="add-hint">
+    <strong>To add a news item:</strong> copy one of the <code>&lt;div class="news-card"&gt;</code> blocks below, paste it at the top of the grid, and update the date, title, description, image, and link.
+  </div>
+
+  <div class="news-grid">
+
+    <!-- Item 1 -->
+    <div class="news-card">
+      <img
+        class="news-card-img"
+        src="https://www.torontomu.ca/content/dam/trsm-research/achievements-impact/2026/ArthurLi-EIBA-2025-Best-Reviewer-Award.jpg"
+        alt="Dr. Arthur Li receiving the 2025 EIBA Best Reviewer Award"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="news-card-img-placeholder" style="display:none;"><span>🏆</span></div>
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-date">January 2026</span>
+          <span class="news-source">EIBA / TMU</span>
+        </div>
+        <h2>Recipient of the 2025 EIBA Best Reviewer Award</h2>
+        <p>
+          Recognized at the 2025 European International Business Academy (EIBA) Conference
+          great assembly in Athens, Greece, for an invaluable contribution as a volunteer
+          reviewer. The award was originally launched at the EIBA 2015 Rio Conference.
+        </p>
+        <a class="news-card-link"
+           href="https://www.torontomu.ca/trsm-research/achievements-impact/2026/01/dr--arthur-li---recipient-of-the-2025-eiba-best-reviewer-award/"
+           target="_blank" rel="noopener">Read more →</a>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="news-card">
+      <img
+        class="news-card-img"
+        src="https://www.torontomu.ca/content/dam/trsm-research/achievements-impact/2023/AOM2023-Arthur-award-2.jpg"
+        alt="Dr. Arthur Li receiving the AOM IM Best Paper Award at AOM 2023"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="news-card-img-placeholder" style="display:none;"><span>🏅</span></div>
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-date">August 2023</span>
+          <span class="news-source">AOM / TMU</span>
+        </div>
+        <h2>Winner — AOM International Management Division Best Paper Award</h2>
+        <p>
+          Awarded the Best Paper Award (OB/HRM/OT) together with colleagues from Western
+          University and the University of North Carolina Greensboro at the 83rd Annual
+          Meeting of the Academy of Management, the largest gathering of management scholars
+          in the world.
+        </p>
+        <a class="news-card-link"
+           href="https://www.torontomu.ca/trsm-research/achievements-impact/2023/08/dr--arthur-li-was-awarded-aom-im-best-paper-award/"
+           target="_blank" rel="noopener">Read more →</a>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="news-card">
+      <img
+        class="news-card-img"
+        src="https://henley.imgix.net/v3/commonImages/Arthue-Li-AIB-Award.jpg?auto=compress,format&crop=focalpoint&fit=crop&fp-x=0.5&fp-y=0.5&h=400&q=80&w=600"
+        alt="Dr. Arthur Li nominated for Buckley and Casson AIB Dissertation Award"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="news-card-img-placeholder" style="display:none;"><span>🎓</span></div>
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-date">April 2022</span>
+          <span class="news-source">Henley Business School</span>
+        </div>
+        <h2>Nominated for the Buckley and Casson AIB Dissertation Award</h2>
+        <p>
+          Shortlisted for the prestigious 2022 Buckley and Casson Academy of International
+          Business Dissertation Award for the dissertation <em>General Manager Succession in
+          Multinational Enterprise Subsidiaries</em>, based on interviews with 40+ managers
+          and data from 1,900+ foreign subsidiaries.
+        </p>
+        <a class="news-card-link"
+           href="https://www.henley.ac.uk/news/2022/dr-arthur-li-nominated-for-buckley-and-casson-aib-dissertation-award"
+           target="_blank" rel="noopener">Read more →</a>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="news-card">
+      <div class="news-card-img-placeholder"><span>🎓</span></div>
+      <div class="news-card-body">
+        <div class="news-card-meta">
+          <span class="news-date">2022</span>
+          <span class="news-source">Ivey Business School</span>
+        </div>
+        <h2>Winner — D'Amore-McKim Best Dissertation Award (Academy of Management)</h2>
+        <p>
+          Recognized by the Ivey International Business group for winning the 2022
+          D'Amore-McKim School of Business Best Dissertation Award at the Academy of
+          Management Annual Meeting in Seattle.
+        </p>
+        <a class="news-card-link"
+           href="https://www.ivey.uwo.ca/internationalbusiness/research/awards/"
+           target="_blank" rel="noopener">Read more →</a>
+      </div>
+    </div>
+
+  </div><!-- /.news-grid -->
+</main>
+
+<footer>
+  <p>Dr. Liang (Arthur) Li · Assistant Professor, Strategy and Global Management · Haskayne School of Business, University of Calgary</p>
+  <p style="margin-top:6px;"><a href="index.html">← Back to main site</a> · © 2026</p>
+</footer>
+
+</body>
+</html>
