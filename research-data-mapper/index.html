@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Empirical Feasibility Mapper</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Workspace">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">EF</div>
+          <div>
+            <p class="eyebrow">Research Design Assistant</p>
+            <h1>Empirical Feasibility Mapper</h1>
+          </div>
+        </div>
+
+        <section class="panel compact">
+          <h2>Question</h2>
+          <textarea id="questionInput" spellcheck="true">Do aging CEOs reduce the geographic scope of multinational expansion?</textarea>
+          <div class="input-meta">
+            <span id="liveStatus">Live mapping is on</span>
+            <span id="charCount">0 characters</span>
+          </div>
+          <div class="button-row">
+            <button id="mapButton" class="primary-button" type="button">
+              <span aria-hidden="true">⌕</span>
+              Refresh map
+            </button>
+            <button id="clearButton" class="icon-button" type="button" title="Clear question" aria-label="Clear question">×</button>
+          </div>
+        </section>
+
+        <section class="panel compact">
+          <h2>Try A Prompt</h2>
+          <div class="prompt-list" id="promptList"></div>
+        </section>
+
+        <section class="panel compact">
+          <h2>Scope</h2>
+          <label class="check-row">
+            <input type="checkbox" id="openOnlyToggle" checked />
+            <span>Prioritize open public datasets</span>
+          </label>
+        </section>
+
+        <section class="panel compact">
+          <h2>Live Status</h2>
+          <div class="status-stack">
+            <div class="status-line">
+              <span class="status-dot live" aria-hidden="true"></span>
+              <span>Recommendations update as you type.</span>
+            </div>
+            <div class="status-line">
+              <span class="status-dot static" aria-hidden="true"></span>
+              <span>Dataset catalog reviewed June 25, 2026.</span>
+            </div>
+            <p class="small-note">True automatic source refresh needs a small backend or scheduled GitHub Action because restricted vendors and some public APIs cannot be queried reliably from a static page.</p>
+          </div>
+        </section>
+      </aside>
+
+      <section class="workspace" aria-live="polite">
+        <header class="top-strip">
+          <div>
+            <p class="eyebrow">Idea → construct → data → design</p>
+            <h2 id="resultTitle">A fast empirical reality check for business scholars</h2>
+          </div>
+          <div class="score-card">
+            <span class="score-label">Feasibility</span>
+            <strong id="scoreValue">Ready</strong>
+          </div>
+        </header>
+
+        <section class="metric-grid" aria-label="Recommendation summary">
+          <article class="metric-card">
+            <span>Open Matches</span>
+            <strong id="openMatchCount">0</strong>
+          </article>
+          <article class="metric-card">
+            <span>Restricted Comparators</span>
+            <strong id="restrictedMatchCount">0</strong>
+          </article>
+          <article class="metric-card wide">
+            <span>Best Next Step</span>
+            <strong id="nextStepText">Enter a research question</strong>
+          </article>
+        </section>
+
+        <section class="summary-grid">
+          <article class="insight-card">
+            <h3>Likely Constructs</h3>
+            <div id="constructTags" class="tag-cloud"></div>
+          </article>
+          <article class="insight-card">
+            <h3>Data Shape</h3>
+            <div id="dataShape" class="data-shape"></div>
+          </article>
+          <article class="insight-card">
+            <h3>Main Frictions</h3>
+            <ul id="frictionList" class="clean-list"></ul>
+          </article>
+        </section>
+
+        <section class="split-layout">
+          <article class="panel large">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Ranked matches</p>
+                <h2>Dataset Candidates</h2>
+              </div>
+              <div class="mini-tabs" role="tablist" aria-label="Dataset filter">
+                <button class="tab active" data-filter="all" type="button">All</button>
+                <button class="tab" data-filter="open" type="button">Open</button>
+                <button class="tab" data-filter="restricted" type="button">Restricted</button>
+              </div>
+            </div>
+            <div id="datasetResults" class="dataset-list"></div>
+          </article>
+
+          <article class="panel large">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Operationalization</p>
+                <h2>Proxy And Design Suggestions</h2>
+              </div>
+              <button id="copyButton" class="secondary-button" type="button">Copy brief</button>
+            </div>
+            <div class="design-stack">
+              <section>
+                <h3>Candidate Proxies</h3>
+                <ul id="proxyList" class="clean-list"></ul>
+              </section>
+              <section>
+                <h3>Representative Papers Using Similar Proxies</h3>
+                <div id="paperList" class="paper-list"></div>
+              </section>
+              <section>
+                <h3>Empirical Designs</h3>
+                <ul id="designList" class="clean-list"></ul>
+              </section>
+              <section>
+                <h3>Next Search Terms</h3>
+                <div id="searchTerms" class="tag-cloud"></div>
+              </section>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
