@@ -1,173 +1,5 @@
-const DATASETS = [
-  {
-    name: "SEC EDGAR Company Filings",
-    access: "open",
-    url: "https://www.sec.gov/edgar/search/",
-    api: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
-    coverage: "U.S. public firms; 10-K, 10-Q, 8-K, proxy statements, ownership filings",
-    unit: "firm-year, filing, executive disclosure",
-    topics: ["ceo", "aging", "age", "executive", "board", "firm", "public firm", "financial", "risk", "text", "disclosure", "governance", "strategy", "geographic", "segment", "expansion"],
-    constructs: ["executive characteristics", "firm performance", "risk disclosure", "corporate governance", "strategic change"],
-    caveat: "Executive age and compensation are often in proxy filings, but extraction requires text parsing or a third-party parser."
-  },
-  {
-    name: "World Bank Open Data / WDI",
-    access: "open",
-    url: "https://data.worldbank.org/",
-    api: "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information",
-    coverage: "Country-year development, trade, macroeconomic, demographic, infrastructure, and education indicators",
-    unit: "country-year",
-    topics: ["country", "development", "gdp", "trade", "market", "distance", "international", "institution", "emerging", "growth", "expansion", "geographic"],
-    constructs: ["market size", "economic development", "trade openness", "infrastructure", "human capital"],
-    caveat: "Excellent for country controls, but rarely enough for firm-level identification by itself."
-  },
-  {
-    name: "Worldwide Governance Indicators",
-    access: "open",
-    url: "https://www.worldbank.org/en/publication/worldwide-governance-indicators",
-    api: "https://www.govindicators.org/",
-    coverage: "Governance indicators for 200+ economies from 1996 onward",
-    unit: "country-year",
-    topics: ["institution", "governance", "regulatory", "rule of law", "corruption", "political", "country", "international", "mne", "host"],
-    constructs: ["institutional quality", "regulatory quality", "rule of law", "control of corruption", "political stability"],
-    caveat: "Useful as country-level institutional context; avoid overclaiming firm-level mechanisms."
-  },
-  {
-    name: "UN Comtrade",
-    access: "open",
-    url: "https://comtradeplus.un.org/",
-    api: "https://comtradedeveloper.un.org/",
-    coverage: "International merchandise trade flows by country, partner, product, and year",
-    unit: "country-product-year",
-    topics: ["trade", "export", "import", "international", "market", "country", "product", "global value chain", "tariff", "multinational", "expansion", "foreign"],
-    constructs: ["export intensity", "trade dependence", "market exposure", "bilateral trade flows"],
-    caveat: "Best for country or product-market exposure; firm-level linkage usually needs another dataset."
-  },
-  {
-    name: "OECD Data Explorer",
-    access: "open",
-    url: "https://data-explorer.oecd.org/",
-    api: "https://gitlab.algobank.oecd.org/public-documentation/dotstat-migration/-/raw/main/OECD_Data_API_documentation.pdf",
-    coverage: "Country and industry indicators across OECD and partner economies",
-    unit: "country-year, industry-year",
-    topics: ["oecd", "productivity", "innovation", "education", "labor", "industry", "country", "international", "expansion", "foreign"],
-    constructs: ["productivity", "R&D intensity", "labor market conditions", "industry structure"],
-    caveat: "Coverage is strongest for OECD economies and harmonized macro/industry indicators."
-  },
-  {
-    name: "OpenAlex",
-    access: "open",
-    url: "https://openalex.org/",
-    api: "https://developers.openalex.org/",
-    coverage: "Open scholarly works, authors, institutions, concepts, citations, and venues",
-    unit: "paper, author, institution, topic-year",
-    topics: ["publication", "science", "innovation", "innovative", "university", "scholar", "citation", "knowledge", "research", "patent", "collaboration", "academic"],
-    constructs: ["knowledge production", "scientific collaboration", "research impact", "topic emergence"],
-    caveat: "Strong for bibliometric designs; author and institution disambiguation still needs validation."
-  },
-  {
-    name: "Crossref Metadata",
-    access: "open",
-    url: "https://www.crossref.org/services/metadata-retrieval/",
-    api: "https://api.crossref.org/",
-    coverage: "DOI metadata for scholarly publications, funders, references, and publishers",
-    unit: "publication",
-    topics: ["doi", "publication", "journal", "article", "citation", "research", "metadata"],
-    constructs: ["publication output", "journal placement", "research diffusion"],
-    caveat: "Metadata completeness varies by publisher and field."
-  },
-  {
-    name: "USPTO PatentsView",
-    access: "open",
-    url: "https://patentsview.org/",
-    api: "https://patentsview.org/apis/purpose",
-    coverage: "U.S. patent grants, inventors, assignees, locations, citations, and technology classes",
-    unit: "patent, inventor, assignee-year",
-    topics: ["patent", "innovation", "innovative", "inventor", "technology", "r&d", "knowledge", "citation", "startup"],
-    constructs: ["innovation output", "technological distance", "inventor mobility", "knowledge recombination"],
-    caveat: "Assignee matching to firms is often the hard part."
-  },
-  {
-    name: "GDELT Project",
-    access: "open",
-    url: "https://www.gdeltproject.org/",
-    api: "https://www.gdeltproject.org/data.html",
-    coverage: "Global news events, tone, themes, entities, and media attention",
-    unit: "event, article, location-day",
-    topics: ["news", "media", "event", "political", "crisis", "risk", "sentiment", "country", "conflict", "attention"],
-    constructs: ["media attention", "political risk", "public sentiment", "crisis exposure"],
-    caveat: "Media-based measures need careful source and language bias checks."
-  },
-  {
-    name: "FRED",
-    access: "open",
-    url: "https://fred.stlouisfed.org/",
-    api: "https://fred.stlouisfed.org/docs/api/fred/",
-    coverage: "Macroeconomic and financial time series from the Federal Reserve Bank of St. Louis",
-    unit: "time series",
-    topics: ["macro", "interest", "inflation", "finance", "economy", "labor", "market", "shock"],
-    constructs: ["macroeconomic conditions", "financial conditions", "monetary shocks"],
-    caveat: "Usually a context/control layer rather than the primary business dataset."
-  },
-  {
-    name: "U.S. Census Business Dynamics Statistics",
-    access: "open",
-    url: "https://www.census.gov/programs-surveys/bds.html",
-    api: "https://api.census.gov/data.html",
-    coverage: "Firm and establishment dynamics by firm age, size, sector, geography, and year",
-    unit: "industry-region-year",
-    topics: ["entrepreneurship", "firm age", "job creation", "establishment", "region", "industry", "startup", "employment"],
-    constructs: ["entrepreneurial activity", "firm growth", "job creation", "regional dynamism"],
-    caveat: "Aggregated public tables protect confidentiality; microdata require restricted access."
-  },
-  {
-    name: "BLS Public Data",
-    access: "open",
-    url: "https://www.bls.gov/data/",
-    api: "https://www.bls.gov/developers/",
-    coverage: "Labor, employment, wages, occupations, prices, productivity, and industry series",
-    unit: "occupation-year, industry-year, region-year",
-    topics: ["labor", "wage", "employment", "occupation", "skill", "industry", "region", "productivity"],
-    constructs: ["labor market tightness", "skill demand", "wage pressure", "employment shocks"],
-    caveat: "Public data are usually aggregated; worker- or firm-level analyses require other sources."
-  },
-  {
-    name: "WRDS: S&P Compustat + Executive Compensation",
-    access: "restricted",
-    url: "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/sp-global-market-intelligence/",
-    api: "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/sp-global-market-intelligence/",
-    coverage: "S&P Global Market Intelligence products on WRDS, including Compustat North America, Compustat Global, Compustat Historical Segments, Capital IQ People Intelligence, and S&P Compustat Executive Compensation.",
-    unit: "firm-year, executive-year, security-day",
-    freshness: "WRDS lists Compustat daily products updated June 24, 2026; Executive Compensation updated monthly, last listed June 4, 2026.",
-    topics: ["ceo", "aging", "age", "executive", "compensation", "firm", "performance", "public firm", "finance", "governance", "board", "segment", "geographic", "scope"],
-    constructs: ["CEO age", "executive compensation", "firm financials", "geographic segments", "market valuation"],
-    caveat: "Institutional subscription required. CRSP is a separate WRDS vendor, so use it only when stock returns or PERMNO/PERMCO linking are central."
-  },
-  {
-    name: "Moody's Orbis / Bureau van Dijk",
-    access: "restricted",
-    url: "https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html",
-    api: "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/bureau-van-dijk-bvd/",
-    coverage: "Global company reference data from Moody's/Bureau van Dijk, covering listed and private companies, ownership links, corporate hierarchies, firmographics, financials, M&A, and country-specific products.",
-    unit: "firm-year, subsidiary-year, ownership link",
-    freshness: "Moody's describes Orbis as covering 625+ million entities; WRDS lists Orbis company products as annual updates, with 2025 refresh dates on current WRDS pages.",
-    topics: ["subsidiary", "mne", "foreign", "ownership", "international", "location", "affiliate", "firm", "country", "geographic", "scope", "expansion", "multinational", "private company"],
-    constructs: ["foreign subsidiary network", "corporate ownership", "geographic scope", "affiliate presence", "private company financials"],
-    caveat: "Still the benchmark for global subsidiary and ownership work, but coverage varies by country disclosure rules and subscription package."
-  },
-  {
-    name: "BoardEx",
-    access: "restricted",
-    url: "https://boardex.com/",
-    api: "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/boardex/",
-    coverage: "Executive and board-member biographies, age, gender, positions, education, compensation, stock holdings, and professional network data across North America, Europe, UK, and Rest of World modules on WRDS.",
-    unit: "person-year, board-year, firm-year",
-    freshness: "WRDS currently describes BoardEx as 1.7 million executives and board members across 2.2 million organizations; regional modules are updated weekly.",
-    topics: ["board", "director", "ceo", "aging", "age", "executive", "network", "governance", "career", "succession", "education", "experience"],
-    constructs: ["executive experience", "director networks", "CEO succession", "board composition", "managerial human capital"],
-    caveat: "High-value for leadership and governance studies, but requires institutional access and careful person-firm matching."
-  }
-];
+let DATASETS = [];
+let CATALOG_META = { reviewedAt: '2026-06-25', updateCadence: 'Manual catalog' };
 
 const PROMPTS = [
   "Do aging CEOs reduce the geographic scope of multinational expansion?",
@@ -330,6 +162,40 @@ const PAPER_LIBRARY = [
 let activeFilter = "all";
 let lastAnalysis = null;
 let liveTimer = null;
+
+async function loadDatasetCatalog() {
+  try {
+    const response = await fetch("datasets.json", { cache: "no-store" });
+    if (!response.ok) throw new Error(`Catalog request failed: ${response.status}`);
+    const catalog = await response.json();
+    DATASETS = Array.isArray(catalog.datasets) ? catalog.datasets : [];
+    CATALOG_META = {
+      reviewedAt: catalog.reviewedAt || "unknown",
+      updateCadence: catalog.updateCadence || "Monthly source checks through GitHub Actions."
+    };
+  } catch (error) {
+    CATALOG_META = {
+      reviewedAt: "unavailable",
+      updateCadence: "Could not load the external catalog file; using an empty fallback."
+    };
+    DATASETS = [];
+  }
+  renderCatalogMeta();
+}
+
+function renderCatalogMeta() {
+  const reviewed = document.querySelector("#catalogReviewed");
+  const cadence = document.querySelector("#catalogCadence");
+  if (reviewed) reviewed.textContent = `Dataset catalog checked ${formatCatalogDate(CATALOG_META.reviewedAt)}.`;
+  if (cadence) cadence.textContent = CATALOG_META.updateCadence;
+}
+
+function formatCatalogDate(value) {
+  if (!value || value === "unknown" || value === "unavailable") return value;
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+}
 
 function normalize(text) {
   return text.toLowerCase().replace(/[^a-z0-9&\s-]/g, " ");
@@ -551,6 +417,13 @@ function datasetCard(dataset) {
   card.className = "dataset-card";
   card.dataset.access = dataset.access;
   const matched = dataset.matched?.length ? dataset.matched.join(", ") : "comparison benchmark";
+  const sourceChecks = Array.isArray(dataset.sourceStatus) && dataset.sourceStatus.length
+    ? dataset.sourceStatus.map((source) => {
+        const label = source.ok ? "reachable" : "check manually";
+        const status = source.status ? `HTTP ${source.status}` : "no status";
+        return `<span class="source-chip ${source.ok ? "ok" : "warn"}">${source.label}: ${label} (${status})</span>`;
+      }).join("")
+    : `<span class="source-chip warn">Source status will appear after the next monthly check</span>`;
   const fit = dataset.access === "restricted"
     ? "Benchmark comparator for construct validity, richer linkage, or replication checks."
     : "Open-data path for early feasibility checks, controls, or direct measurement.";
@@ -577,6 +450,7 @@ function datasetCard(dataset) {
       <div class="details-grid">
         <p><strong>Best use:</strong> ${fit}</p>
         ${dataset.freshness ? `<p><strong>Current note:</strong> ${dataset.freshness}</p>` : ""}
+        <div class="source-list">${sourceChecks}</div>
         <p><strong>Watch out:</strong> ${dataset.caveat}</p>
       </div>
     </details>
@@ -721,5 +595,10 @@ document.querySelectorAll(".tab").forEach((button) => {
   });
 });
 
-initPrompts();
-analyzeQuestion();
+async function initApp() {
+  initPrompts();
+  await loadDatasetCatalog();
+  analyzeQuestion();
+}
+
+initApp();

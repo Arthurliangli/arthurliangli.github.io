@@ -586,6 +586,32 @@ summary {
   margin-top: 10px;
 }
 
+.source-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.76rem;
+  font-weight: 780;
+}
+
+.source-chip.ok {
+  background: #e7f5ed;
+  color: var(--green);
+}
+
+.source-chip.warn {
+  background: #fff4dd;
+  color: var(--gold);
+}
+
 .design-stack {
   display: grid;
   gap: 22px;

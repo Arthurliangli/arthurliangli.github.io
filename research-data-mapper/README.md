@@ -18,4 +18,6 @@ The prototype has no build step and no external dependencies.
 
 ## Real-time behavior
 
-The current static version updates recommendations instantly in the browser as the user types. Automatic source-catalog refresh would require a backend endpoint or scheduled GitHub Action that periodically checks public documentation/API endpoints and rebuilds the dataset catalog.
+The current static version updates recommendations instantly in the browser as the user types.
+
+Dataset entries live in `datasets.json`. A scheduled GitHub Action runs monthly, checks whether each dataset and documentation URL is reachable, updates `reviewedAt`, and writes source-check metadata back to the catalog. Dataset descriptions and scholarly judgments remain human-curated.
