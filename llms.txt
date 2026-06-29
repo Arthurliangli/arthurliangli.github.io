@@ -13,6 +13,10 @@ Research areas:
 - Managerial decision making in MNEs
 - Microfoundations of international business strategy
 
+GlobalMind:
+- GlobalMind is a research media space on Arthur Li's website for accessible audio/video explanations of academic work on multinational enterprises, executive decision-making, and global strategy.
+- Featured episode: an AI-generated audio overview of research on MNE CEO aging.
+
 Key pages:
 - Homepage: https://arthurliangli.github.io/
 - News: https://arthurliangli.github.io/news.html
