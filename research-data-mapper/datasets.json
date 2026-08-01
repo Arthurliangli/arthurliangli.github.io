@@ -1,5 +1,5 @@
 {
-  "reviewedAt": "2026-07-01",
+  "reviewedAt": "2026-08-01",
   "updateCadence": "Monthly GitHub Action source checks; substantive dataset descriptions remain human-curated.",
   "datasets": [
     {
@@ -41,14 +41,14 @@
           "url": "https://www.sec.gov/edgar/search/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -87,14 +87,14 @@
           "url": "https://data.worldbank.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -131,14 +131,14 @@
           "url": "https://www.worldbank.org/en/publication/worldwide-governance-indicators",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://www.govindicators.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -176,14 +176,14 @@
           "url": "https://comtradeplus.un.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://comtradedeveloper.un.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -219,14 +219,14 @@
           "url": "https://data-explorer.oecd.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://gitlab.algobank.oecd.org/public-documentation/dotstat-migration/-/raw/main/OECD_Data_API_documentation.pdf",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -264,14 +264,14 @@
           "url": "https://openalex.org/",
           "ok": false,
           "status": 403,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://developers.openalex.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -303,14 +303,14 @@
           "url": "https://www.crossref.org/services/metadata-retrieval/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://api.crossref.org/",
-          "ok": true,
-          "status": 200,
-          "checkedAt": "2026-07-01"
+          "ok": false,
+          "status": 429,
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -345,14 +345,14 @@
           "url": "https://patentsview.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://patentsview.org/apis/purpose",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -388,14 +388,14 @@
           "url": "https://www.gdeltproject.org/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://www.gdeltproject.org/data.html",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -428,7 +428,7 @@
           "url": "https://fred.stlouisfed.org/",
           "ok": false,
           "status": null,
-          "checkedAt": "2026-07-01",
+          "checkedAt": "2026-08-01",
           "error": "fetch failed"
         },
         {
@@ -436,7 +436,7 @@
           "url": "https://fred.stlouisfed.org/docs/api/fred/",
           "ok": false,
           "status": null,
-          "checkedAt": "2026-07-01",
+          "checkedAt": "2026-08-01",
           "error": "fetch failed"
         }
       ]
@@ -471,14 +471,14 @@
           "url": "https://www.census.gov/programs-surveys/bds.html",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://api.census.gov/data.html",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -512,14 +512,14 @@
           "url": "https://www.bls.gov/data/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://www.bls.gov/developers/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -561,14 +561,14 @@
           "url": "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/sp-global-market-intelligence/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/sp-global-market-intelligence/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -610,14 +610,14 @@
           "url": "https://www.moodys.com/web/en/us/capabilities/company-reference-data/orbis.html",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/bureau-van-dijk-bvd/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     },
@@ -657,14 +657,14 @@
           "url": "https://boardex.com/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         },
         {
           "label": "Docs/API",
           "url": "https://wrds-www.wharton.upenn.edu/pages/about/data-vendors/boardex/",
           "ok": true,
           "status": 200,
-          "checkedAt": "2026-07-01"
+          "checkedAt": "2026-08-01"
         }
       ]
     }
